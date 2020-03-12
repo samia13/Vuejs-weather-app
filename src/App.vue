@@ -12,8 +12,8 @@
       </div>
       <div class="weather-info" v-if="typeof weather.main != 'undefined' ">
         <div class="weather-location"><h3>{{weather.name}}, {{weather.sys.country}}</h3></div>
-        <div class="weather-date">{{weather.weather[0].main}} wednesday 11 March 2020</div>
-        <div class="weather-temp">{{ Math.round(weather.main.temp) }} °C</div>
+        <div class="weather-date">wednesday 11 March 2020</div>
+        <div class="weather-temp">{{ Math.round(weather.main.temp) }}°C</div>
         <div class="weather-description">
           <img :src="iconCode" />
           {{ weather.weather[0].description }}
@@ -84,6 +84,9 @@ body{
 }
 .Snow{
   background: url('./assets/snow-bg.jpg');
+}
+.Mist{
+  background: url('./assets/mist-bg.jpg');
 }
 .main_wrapper{
   height: 100vh;
