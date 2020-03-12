@@ -143,9 +143,6 @@ body{
   color: white;
   font-size: 53px;
   font-weight: bold;
-  /*background: rgb(255,255,255,0.6);*/
-  /*border-top-left-radius: 20px;*/
-  /*border-bottom-right-radius: 20px;*/
 }
 ::placeholder {
     color: white;
