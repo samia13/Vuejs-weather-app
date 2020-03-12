@@ -1,23 +1,23 @@
 <template>
-  <div id="app" :class="typeof weather.main != 'undefined' && weather.main.temp > 15 ? 'warm' : 'cold' ">
+  <div id="app" :class="typeof weather.main != 'undefined' ? weather.weather[0].main : 'default' ">
     <div class="main_wrapper">
       <div class="search-container">
         <input 
         type="text" 
         class="search-input"  
-        placeholder="search..." 
+        placeholder="Search..." 
         v-model="query"
         @keyup.enter="fetchWeather"
         />
       </div>
       <div class="weather-info" v-if="typeof weather.main != 'undefined' ">
         <div class="weather-location"><h3>{{weather.name}}, {{weather.sys.country}}</h3></div>
-        <div class="weather-date">wednesday 11 March 2020</div>
+        <div class="weather-date">{{weather.weather[0].main}} wednesday 11 March 2020</div>
+        <div class="weather-temp">{{ Math.round(weather.main.temp) }} °C</div>
         <div class="weather-description">
           <img :src="iconCode" />
           {{ weather.weather[0].description }}
         </div>
-        <div class="weather-temp">{{ Math.round(weather.main.temp) }} °C</div>
       </div>  
     </div>
   </div>
@@ -67,19 +67,35 @@ body{
   background-position: bottom;
   background-size: cover;
 }
-.warm{
-  background: url('./assets/warm-bg.jpg');
+.Clear{
+  background: url('./assets/clear-bg.jpg');
 }
-.cold{
-  background: url('./assets/cold-bg.jpg');
+.default{
+  background: url('./assets/default.jpg');
+}
+.Clouds{
+  background: url('./assets/clouds-bg.jpg');
+}
+.Thunderstorm{
+  background: url('./assets/thunderstorm-bg.jpg');
+}
+.Rain{
+  background: url('./assets/rain-bg.jpg');
+}
+.Snow{
+  background: url('./assets/snow-bg.jpg');
 }
 .main_wrapper{
   height: 100vh;
   padding: 30px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   background-image: linear-gradient(to bottom, rgb(0,0,0,0.25), rgb(0,0,0,0.75));
 }
 .search-container{
   margin-bottom: 30px;
+  flex: 1;
 }
 
 .search-input{
@@ -99,6 +115,7 @@ body{
 .weather-info{
   padding: 20px;
   width: 100%;
+  flex: 3;
 }
 .weather-location h3{
   color:white;
@@ -120,16 +137,20 @@ body{
   align-items: center;
 }
 .weather-temp {
-  padding: 30px 13px;
-  width: 40%;
+  padding: 7px 13px;
   margin: 0 auto;
   text-align: center;
   color: white;
-  font-size: 20px;
+  font-size: 53px;
   font-weight: bold;
-  background: rgb(255,255,255,0.6);
-  border-top-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  /*background: rgb(255,255,255,0.6);*/
+  /*border-top-left-radius: 20px;*/
+  /*border-bottom-right-radius: 20px;*/
+}
+::placeholder {
+    color: white;
+    font-size: 15px;
+    opacity: 1;
 }
 
 </style>
